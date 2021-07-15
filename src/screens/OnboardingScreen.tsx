@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Text,
+  Animated,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import {IconNext, IconRightarrow} from 'assets/icons';
@@ -20,6 +21,7 @@ const OnboardingScreen = (props: Props) => {
   const flatlistRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [viewableItems, setViewableItems] = useState([]);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const handleViewableItemsChanged = useRef(({viewableItems}: any) => {
     setViewableItems(viewableItems);
   });
@@ -29,7 +31,12 @@ const OnboardingScreen = (props: Props) => {
     if (!viewableItems[0] || currentPage === viewableItems[0].index) return;
     // @ts-ignore
     setCurrentPage(viewableItems[0].index);
-  }, [viewableItems]);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true, // <-- Add this
+    }).start();
+  }, [viewableItems, fadeAnim]);
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 50});
   const handleNext = () => {
     if (currentPage == dataOnBoaring.length - 1) return;
@@ -186,26 +193,39 @@ const OnboardingScreen = (props: Props) => {
             </TouchableOpacity>
           ) : (
             // Get Started Button
-            <TouchableOpacity
+            <Animated.View
               style={{
-                paddingHorizontal: 10 * 2,
-                height: 60,
-                borderRadius: 30,
-                backgroundColor: ptColor.origin,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
+                // opacity: fadeAnim,
+                transform: [
+                  {
+                    translateY: fadeAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [100, 0], // 0 : 150, 0.5 : 75, 1 : 0
+                    }),
+                  },
+                ],
               }}>
-              <Text
+              <TouchableOpacity
                 style={{
-                  color: ptColor.white,
-                  fontSize: 18,
-                  marginLeft: 10,
+                  paddingHorizontal: 10 * 2,
+                  height: 60,
+                  borderRadius: 30,
+                  backgroundColor: ptColor.origin,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}>
-                Get Started
-              </Text>
-              <IconNext />
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    color: ptColor.white,
+                    fontSize: 18,
+                    marginLeft: 10,
+                  }}>
+                  Get Started
+                </Text>
+                <IconNext />
+              </TouchableOpacity>
+            </Animated.View>
           )}
         </View>
       </SafeAreaView>
@@ -226,6 +246,9 @@ const OnboardingScreen = (props: Props) => {
         showsHorizontalScrollIndicator={false}
         decelerationRate={0}
         scrollEventThrottle={16}
+        // onMomentumScrollEnd={ev => {
+        //   console.log(Math.floor(ev.nativeEvent.contentOffset.x / WIDTH));
+        // }}
         keyExtractor={(_, index) => index.toString()}
         renderItem={renderFlatlistItem}
         initialNumToRender={1}
