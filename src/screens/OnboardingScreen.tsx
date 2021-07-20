@@ -1,18 +1,22 @@
+import {IconNext, IconRightarrow} from 'assets/icons';
 import {dataOnBoaring} from 'constants/data';
 import {HEIGHT, ptColor, styles, WIDTH} from 'constants/styles';
 import {ThemeContext} from 'context/ThemeProvider';
-import React, {useContext, useRef, useState, useEffect} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {ImageBackground} from 'react-native';
 import {
-  FlatList,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Text,
   Animated,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
-import {IconNext, IconRightarrow} from 'assets/icons';
+import LinearGradient from 'react-native-linear-gradient';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import SafeAreaView from 'react-native-safe-area-view';
 
 interface Props {}
 
@@ -33,7 +37,7 @@ const OnboardingScreen = (props: Props) => {
     setCurrentPage(viewableItems[0].index);
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1000,
+      duration: 900,
       useNativeDriver: true, // <-- Add this
     }).start();
   }, [viewableItems, fadeAnim]);
@@ -71,36 +75,50 @@ const OnboardingScreen = (props: Props) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        {/* <View
-          style={{
-            height: 100,
-            width: 100,
-          }}> */}
-        {item.image}
-        {/* </View> */}
-        <View
-          style={{
-            marginHorizontal: 5,
-          }}>
-          <Text style={[styles.textcaptions, style.textDescription]}>
-            {item.description}
-          </Text>
-          <Text style={[styles.textcaptions, style.textTitle]}>
-            {item.title}
-          </Text>
-        </View>
+        <ImageBackground
+          source={item.image}
+          style={{height: HEIGHT, width: WIDTH, flex: 1}}></ImageBackground>
+        <LinearGradient
+          colors={['rgba(225, 225, 225, 0.02)', 'rgba(0, 0, 0, 01)']}
+          start={{x: 1, y: 0}}
+          end={{x: 1, y: 1}}
+          style={style.linearGradient}>
+          <View
+            style={{
+              justifyContent: 'center',
+              marginHorizontal: 20,
+            }}>
+            <Text
+              style={[
+                styles.textcaptions,
+                {color: ptColor.white, fontSize: 20},
+              ]}>
+              {item.description}
+            </Text>
+            <Text style={[styles.textcaptions, {color: ptColor.white}]}>
+              {item.title}
+            </Text>
+          </View>
+        </LinearGradient>
       </View>
     );
   };
   const renderTopSection = () => {
     return (
-      <SafeAreaView>
+      <View
+        style={{
+          position: 'absolute',
+          top: 20,
+          width: WIDTH,
+          zIndex: 10,
+        }}>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingHorizontal: 10 * 2,
+            width: WIDTH,
           }}>
           {/* Back button */}
           <TouchableOpacity
@@ -137,13 +155,18 @@ const OnboardingScreen = (props: Props) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </View>
     );
   };
 
   const renderBottomSection = () => {
     return (
-      <SafeAreaView>
+      <SafeAreaView
+        style={{
+          position: 'absolute',
+          bottom: 20,
+          width: WIDTH,
+        }}>
         <View
           style={{
             flexDirection: 'row',
@@ -232,33 +255,38 @@ const OnboardingScreen = (props: Props) => {
     );
   };
   return (
-    <View style={[style.container, {backgroundColor: theme.backgroundColor}]}>
-      {/* TOP SECTION - Back & Skip button */}
-      {renderTopSection()}
+    <SafeAreaProvider>
+      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
+        <View
+          style={[style.container, {backgroundColor: theme.backgroundColor}]}>
+          {/* TOP SECTION - Back & Skip button */}
+          {renderTopSection()}
 
-      {/* FLATLIST with pages */}
-      <FlatList
-        ref={flatlistRef}
-        data={dataOnBoaring}
-        contentContainerStyle={{}}
-        pagingEnabled
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        decelerationRate={0}
-        scrollEventThrottle={16}
-        // onMomentumScrollEnd={ev => {
-        //   console.log(Math.floor(ev.nativeEvent.contentOffset.x / WIDTH));
-        // }}
-        keyExtractor={(_, index) => index.toString()}
-        renderItem={renderFlatlistItem}
-        initialNumToRender={1}
-        onViewableItemsChanged={handleViewableItemsChanged.current}
-        viewabilityConfig={viewConfigRef.current}
-        extraData={WIDTH}
-      />
-      {/* BOTTOM SECTION - pagination & next or GetStarted button */}
-      {renderBottomSection()}
-    </View>
+          {/* FLATLIST with pages */}
+          <FlatList
+            ref={flatlistRef}
+            data={dataOnBoaring}
+            contentContainerStyle={{}}
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0}
+            scrollEventThrottle={16}
+            // onMomentumScrollEnd={ev => {
+            //   console.log(Math.floor(ev.nativeEvent.contentOffset.x / WIDTH));
+            // }}
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={renderFlatlistItem}
+            initialNumToRender={1}
+            onViewableItemsChanged={handleViewableItemsChanged.current}
+            viewabilityConfig={viewConfigRef.current}
+            extraData={WIDTH}
+          />
+          {/* BOTTOM SECTION - pagination & next or GetStarted button */}
+          {renderBottomSection()}
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
@@ -273,6 +301,20 @@ const style = StyleSheet.create({
   textTitle: {
     fontSize: 14,
     color: ptColor.textSubColor,
+  },
+  linearGradient: {
+    position: 'absolute',
+    bottom: 0,
+    width: WIDTH,
+    height: HEIGHT / 3,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });
 export default OnboardingScreen;
