@@ -1,4 +1,4 @@
-import {ptColor} from 'constants/styles';
+import {ptColors} from 'common/colors';
 import React from 'react';
 import {View, Text} from 'react-native';
 import {Svg, G, Path} from 'react-native-svg';
@@ -11,7 +11,7 @@ interface Props {
 const IconNext = (props: Props) => {
   return (
     <Svg
-      fill={props.color || ptColor.white}
+      fill={props.color || ptColors.white}
       height={props.height || 20}
       width={props.width || 20}
       viewBox="0 0 55.752 55.752">

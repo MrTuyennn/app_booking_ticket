@@ -22,5 +22,5 @@ if (Platform.OS === 'android') {
   StatusBar.setBackgroundColor('rgba(0,0,0,0)');
   StatusBar.setTranslucent(true);
 }
-StatusBar.setBarStyle('dark-content');
+StatusBar.setBarStyle('light-content');
 AppRegistry.registerComponent(appName, () => App);

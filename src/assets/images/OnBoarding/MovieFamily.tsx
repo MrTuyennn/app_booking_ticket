@@ -1,4 +1,4 @@
-import { ptColor } from 'constants/styles';
+import { ptColors } from 'common/colors';
 import React from 'react';
 import {
   Circle,
@@ -28,13 +28,13 @@ const MovieFamily = (props: Props) => {
       <Path
         d="M918,157.87V583.13A105.34,105.34,0,0,1,812.63,688.5H387.37a105,105,0,0,1-65.55-22.86,106.41,106.41,0,0,1-20.26-21.34A105.38,105.38,0,0,1,282,583.13V157.87q0-4.23.33-8.37a104,104,0,0,1,2.51-16,105.4,105.4,0,0,1,102.53-81H812.63a105.4,105.4,0,0,1,102.53,81,104,104,0,0,1,2.51,16Q918,153.64,918,157.87Z"
         transform="translate(-89 -52.5)"
-        fill={ptColor.black}
+        fill={ptColors.black}
         opacity="0.1"
       />
       <Path
         d="M608,387.5H918v16H608v111H918v16H608v158H592v-158H282v-16H592v-111H282v-16H592v-111H282v-16H592v-111H282.33a104,104,0,0,1,2.51-16H592v-81h16v81H915.16a104,104,0,0,1,2.51,16H608v111H918v16H608Z"
         transform="translate(-89 -52.5)"
-        fill={ptColor.black}
+        fill={ptColors.black}
         opacity="0.1"
       />
       <Ellipse

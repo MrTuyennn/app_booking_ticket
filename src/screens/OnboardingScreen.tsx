@@ -1,13 +1,14 @@
 import {IconNext, IconRightarrow} from 'assets/icons';
+import {ptColors} from 'common/colors';
+import {ptFonts} from 'common/fonts';
+import {HEIGHT, WIDTH} from 'common/styles';
 import {dataOnBoaring} from 'constants/data';
-import {HEIGHT, ptColor, styles, WIDTH} from 'constants/styles';
 import {ThemeContext} from 'context/ThemeProvider';
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {ImageBackground} from 'react-native';
 import {
   Animated,
   FlatList,
-  Image,
+  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -90,12 +91,12 @@ const OnboardingScreen = (props: Props) => {
             }}>
             <Text
               style={[
-                styles.textcaptions,
-                {color: ptColor.white, fontSize: 20},
+                ptFonts.textcaptions,
+                {color: ptColors.white, fontSize: 20},
               ]}>
               {item.description}
             </Text>
-            <Text style={[styles.textcaptions, {color: ptColor.white}]}>
+            <Text style={[ptFonts.textcaptions, {color: ptColors.white}]}>
               {item.title}
             </Text>
           </View>
@@ -133,7 +134,7 @@ const OnboardingScreen = (props: Props) => {
               name="left"
               style={{
                 fontSize: 25,
-                color: ptColor.black,
+                color: ptColors.black,
                 opacity: currentPage == 0 ? 0 : 0,
               }}
             />
@@ -144,10 +145,10 @@ const OnboardingScreen = (props: Props) => {
           <TouchableOpacity onPress={handleSkipToEnd}>
             <Text
               style={[
-                styles.textcaptions,
+                ptFonts.textcaptions,
                 {
                   fontSize: 18,
-                  color: ptColor.greenSuccess,
+                  color: ptColors.green,
                   opacity: currentPage == dataOnBoaring.length - 1 ? 0 : 1,
                 },
               ]}>
@@ -188,8 +189,8 @@ const OnboardingScreen = (props: Props) => {
                     borderRadius: 5,
                     backgroundColor:
                       index == currentPage
-                        ? ptColor.greenSuccess
-                        : ptColor.greenSuccess + '20',
+                        ? ptColors.green
+                        : ptColors.green + '20',
                     marginRight: 8,
                   }}
                 />
@@ -209,7 +210,7 @@ const OnboardingScreen = (props: Props) => {
                 width: 60,
                 height: 60,
                 borderRadius: 30,
-                backgroundColor: ptColor.origin,
+                backgroundColor: ptColors.origin,
               }}
               activeOpacity={0.8}>
               <IconRightarrow />
@@ -233,14 +234,14 @@ const OnboardingScreen = (props: Props) => {
                   paddingHorizontal: 10 * 2,
                   height: 60,
                   borderRadius: 30,
-                  backgroundColor: ptColor.origin,
+                  backgroundColor: ptColors.origin,
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
                 <Text
                   style={{
-                    color: ptColor.white,
+                    color: ptColors.white,
                     fontSize: 18,
                     marginLeft: 10,
                   }}>
@@ -300,7 +301,7 @@ const style = StyleSheet.create({
   },
   textTitle: {
     fontSize: 14,
-    color: ptColor.textSubColor,
+    color: ptColors.gray,
   },
   linearGradient: {
     position: 'absolute',
@@ -313,7 +314,7 @@ const style = StyleSheet.create({
     fontFamily: 'Gill Sans',
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
+    color: ptColors.white,
     backgroundColor: 'transparent',
   },
 });

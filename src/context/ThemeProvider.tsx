@@ -1,4 +1,4 @@
-import {ptColor} from 'constants/styles';
+import {ptColors} from 'common/colors';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
@@ -8,14 +8,14 @@ interface Props {
 
 const themes = {
   dark: {
-    backgroundColor: ptColor.black,
-    background: ptColor.black,
-    color: ptColor.white,
+    backgroundColor: ptColors.black,
+    background: ptColors.black,
+    color: ptColors.white,
   },
   light: {
-    backgroundColor: ptColor.white,
-    background: ptColor.white,
-    color: ptColor.black,
+    backgroundColor: ptColors.white,
+    background: ptColors.white,
+    color: ptColors.black,
   },
 };
 

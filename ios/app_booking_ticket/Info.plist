@@ -77,6 +77,29 @@
 		<string>Nunito-Light.ttf</string>
 		<string>Nunito-Regular.ttf</string>
 		<string>Nunito-SemiBold.ttf</string>
+		<string>Cabin-Bold.ttf</string>
+		<string>Cabin-Regular.ttf</string>
+		<string>Cabin-SemiBold.ttf</string>
+		<string>Cabin.ttf</string>
+		<string>Comfortaa-Bold.ttf</string>
+		<string>Comfortaa-Medium.ttf</string>
+		<string>Comfortaa.ttf</string>
+		<string>FiraSans-ExtraLight.ttf</string>
+		<string>FiraSans-Medium.ttf</string>
+		<string>Gilroy-ExtraBold.otf</string>
+		<string>Gilroy-Light.otf</string>
+		<string>Gilroy-Medium.ttf</string>
+		<string>Gilroy-SemiBold.ttf</string>
+		<string>Quicksand-Bold.ttf</string>
+		<string>Quicksand-Medium.ttf</string>
+		<string>Quicksand-SemiBold.ttf</string>
+		<string>Quicksand.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>SourceSansPro-Light.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
+		<string>SourceSansPro-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

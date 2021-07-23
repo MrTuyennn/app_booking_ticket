@@ -18,6 +18,7 @@ module.exports = {
           '@states': './src/states', // optional
           '@navigation': './src/navigation',
           '@utils': './src/utils',
+          '@common':'./src/common'
         },
       },
     ],
