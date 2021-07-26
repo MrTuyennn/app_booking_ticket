@@ -38,4 +38,5 @@ export const ptColors = {
   oBlack: '#333333',
   pink: '#eb2f96',
   origin: '#FF5100',
+  fbBlue: '#3B5998',
 };

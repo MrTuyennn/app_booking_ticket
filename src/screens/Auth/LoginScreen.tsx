@@ -1,8 +1,10 @@
 import {IMAGE_PATHS} from 'assets/images';
 import {ptColors} from 'common/colors';
 import {fontFamily, FS, HEIGHT, WIDTH} from 'common/fonts';
-import {HEIGHT_SCALE_RATIO} from 'common/styles';
+import {HEIGHT_SCALE_RATIO, WIDTH_SCALE_RATIO} from 'common/styles';
+import CusButton from 'components/CusButton';
 import CusInputText from 'components/CusInputText';
+import ListSocail from 'components/ListSocail';
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 
@@ -38,6 +40,18 @@ const LoginScreen = (props: Props) => {
             lable="Nhập mật khẩu"
             isPw
           />
+          <View
+            style={{
+              alignSelf: 'flex-end',
+              marginVertical: 10 * HEIGHT_SCALE_RATIO,
+            }}>
+            <Text style={{color: ptColors.white}}>Quên mật khẩu?</Text>
+          </View>
+
+          <CusButton title="Đăng nhập" />
+          <Text style={styles.textOr}>Hoặc</Text>
+
+          <ListSocail />
         </View>
       </View>
     </ImageBackground>
@@ -55,19 +69,24 @@ const styles = StyleSheet.create({
     backgroundColor: ptColors.lightGreyColor,
   },
   BottomView: {
-    height: HEIGHT / 2.2,
     width: WIDTH,
     backgroundColor: ptColors.oBlack,
     alignItems: 'center',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
+    padding: 10,
   },
   cusText: {
     color: ptColors.lRed,
     fontFamily: fontFamily.CabinBold,
     textAlign: 'center',
-    marginVertical: 20 * HEIGHT_SCALE_RATIO,
     fontSize: FS(18),
+  },
+  textOr: {
+    textAlign: 'center',
+    color: ptColors.white,
+    marginVertical: 10 * WIDTH_SCALE_RATIO,
+    fontSize: FS(16),
   },
 });
 export default LoginScreen;
