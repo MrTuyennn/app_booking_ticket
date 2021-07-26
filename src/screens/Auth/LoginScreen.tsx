@@ -1,9 +1,10 @@
 import {IMAGE_PATHS} from 'assets/images';
 import {ptColors} from 'common/colors';
 import {fontFamily, FS, HEIGHT, WIDTH} from 'common/fonts';
+import {HEIGHT_SCALE_RATIO} from 'common/styles';
 import CusInputText from 'components/CusInputText';
 import React from 'react';
-import {ImageBackground, Text, StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 
 interface Props {}
 
@@ -12,7 +13,6 @@ const LoginScreen = (props: Props) => {
   const [password, setPassword] = React.useState('');
   let ref_input2 = React.useRef(null);
   let ref_input1 = React.useRef(null);
-  console.log('email', email);
   return (
     <ImageBackground
       resizeMode="cover"
@@ -36,6 +36,7 @@ const LoginScreen = (props: Props) => {
             onChangeText={(text: string) => setPassword(text)}
             value={password}
             lable="Nhập mật khẩu"
+            isPw
           />
         </View>
       </View>
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   BottomView: {
     height: HEIGHT / 2.2,
     width: WIDTH,
-    backgroundColor: ptColors.grey,
+    backgroundColor: ptColors.oBlack,
     alignItems: 'center',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     color: ptColors.lRed,
     fontFamily: fontFamily.CabinBold,
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 20 * HEIGHT_SCALE_RATIO,
     fontSize: FS(18),
   },
 });

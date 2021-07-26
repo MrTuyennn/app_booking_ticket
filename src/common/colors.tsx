@@ -35,6 +35,7 @@ export const ptColors = {
   lGrey: '#FAFAFA',
   mBlack: '#333333',
   lBlack: '#555555',
+  oBlack: '#333333',
   pink: '#eb2f96',
   origin: '#FF5100',
 };

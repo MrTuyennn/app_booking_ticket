@@ -1,7 +1,7 @@
-import {ptColors} from 'common/colors';
-import React from 'react';
-import {View, Text} from 'react-native';
-import {Svg, G, Path} from 'react-native-svg';
+import { ptColors } from 'common/colors';
+import { HEIGHT_SCALE_RATIO, WIDTH_SCALE_RATIO } from 'common/fonts';
+import React, { memo } from 'react';
+import { G, Path, Svg } from 'react-native-svg';
 interface Props {
   height?: number;
   width?: number;
@@ -12,8 +12,8 @@ const IconNext = (props: Props) => {
   return (
     <Svg
       fill={props.color || ptColors.white}
-      height={props.height || 20}
-      width={props.width || 20}
+      height={props.height || 20 * HEIGHT_SCALE_RATIO}
+      width={props.width || 20 * WIDTH_SCALE_RATIO}
       viewBox="0 0 55.752 55.752">
       <G>
         <Path
@@ -42,4 +42,4 @@ const IconNext = (props: Props) => {
   );
 };
 
-export default IconNext;
+export default memo(IconNext);
