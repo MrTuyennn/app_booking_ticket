@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginVertical: 10 * HEIGHT_SCALE_RATIO,
     backgroundColor: ptColors.redBtn,
+    marginTop: 30 * HEIGHT_SCALE_RATIO,
   },
   titleContainer: {
     textTransform: 'uppercase',

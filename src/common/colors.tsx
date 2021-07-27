@@ -39,4 +39,6 @@ export const ptColors = {
   pink: '#eb2f96',
   origin: '#FF5100',
   fbBlue: '#3B5998',
+  appColors: '#333333',
+  linearGradient: ['#D40F4D', '#6062A3'],
 };

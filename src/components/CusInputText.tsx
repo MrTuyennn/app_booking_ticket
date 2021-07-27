@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     left: 15 * WIDTH_SCALE_RATIO,
   },
   textLabel: {
-    color: ptColors.gray,
+    color: ptColors.white,
     fontSize: FS(14),
   },
 });
