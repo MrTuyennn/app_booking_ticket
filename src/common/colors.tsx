@@ -41,4 +41,5 @@ export const ptColors = {
   fbBlue: '#3B5998',
   appColors: '#333333',
   linearGradient: ['#D40F4D', '#6062A3'],
+  transparent: 'transparent'
 };
