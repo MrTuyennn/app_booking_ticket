@@ -1,7 +1,12 @@
 import {IconNext, IconRightarrow} from 'assets/icons';
 import {ptColors} from 'common/colors';
 import {ptFonts} from 'common/fonts';
-import {HEIGHT, WIDTH} from 'common/styles';
+import {
+  HEIGHT,
+  HEIGHT_SCALE_RATIO,
+  WIDTH,
+  WIDTH_SCALE_RATIO,
+} from 'common/styles';
 import {dataOnBoaring} from 'constants/data';
 import {ThemeContext} from 'context/ThemeProvider';
 import React, {useContext, useEffect, useRef, useState} from 'react';
@@ -9,6 +14,8 @@ import {
   Animated,
   FlatList,
   ImageBackground,
+  Platform,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -68,6 +75,10 @@ const OnboardingScreen = (props: Props) => {
       index: dataOnBoaring.length - 1,
     });
   };
+  if (Platform.OS === 'android') {
+    StatusBar.setBackgroundColor('rgba(0,0,0,0)');
+    StatusBar.setTranslucent(true);
+  }
   const renderFlatlistItem = ({item}: any) => {
     return (
       <View
@@ -78,29 +89,34 @@ const OnboardingScreen = (props: Props) => {
         }}>
         <ImageBackground
           source={item.image}
-          style={{height: HEIGHT, width: WIDTH, flex: 1}}></ImageBackground>
-        <LinearGradient
-          colors={['rgba(225, 225, 225, 0.02)', 'rgba(0, 0, 0, 01)']}
-          start={{x: 1, y: 0}}
-          end={{x: 1, y: 1}}
-          style={style.linearGradient}>
+          style={{...StyleSheet.absoluteFillObject}}>
+          <LinearGradient
+            colors={ptColors.linearGradient}
+            start={{x: 0, y: 0.8}}
+            end={{x: 1.2, y: 0.9}}
+            locations={[0, 0.5, 0.6]}
+            style={style.linearGradient}></LinearGradient>
           <View
             style={{
-              justifyContent: 'center',
-              marginHorizontal: 20,
+              position: 'absolute',
+              width: '90%',
+              bottom: HEIGHT / 3,
+              flex: 1,
+              marginHorizontal: 20 * WIDTH_SCALE_RATIO,
             }}>
             <Text
               style={[
                 ptFonts.textcaptions,
-                {color: ptColors.white, fontSize: 20},
+                {color: ptColors.white, fontSize: 20, flex: 1},
               ]}>
               {item.description}
             </Text>
-            <Text style={[ptFonts.textcaptions, {color: ptColors.white}]}>
+            <Text
+              style={[ptFonts.textcaptions, {color: ptColors.white, flex: 1}]}>
               {item.title}
             </Text>
           </View>
-        </LinearGradient>
+        </ImageBackground>
       </View>
     );
   };
@@ -109,7 +125,7 @@ const OnboardingScreen = (props: Props) => {
       <View
         style={{
           position: 'absolute',
-          top: 20,
+          top: 40 * HEIGHT_SCALE_RATIO,
           width: WIDTH,
           zIndex: 10,
         }}>
@@ -257,36 +273,35 @@ const OnboardingScreen = (props: Props) => {
   };
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
-        <View
-          style={[style.container, {backgroundColor: theme.backgroundColor}]}>
-          {/* TOP SECTION - Back & Skip button */}
-          {renderTopSection()}
+      {/* <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}> */}
+      <View style={[style.container, {backgroundColor: theme.backgroundColor}]}>
+        {/* TOP SECTION - Back & Skip button */}
+        {renderTopSection()}
 
-          {/* FLATLIST with pages */}
-          <FlatList
-            ref={flatlistRef}
-            data={dataOnBoaring}
-            contentContainerStyle={{}}
-            pagingEnabled
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            decelerationRate={0}
-            scrollEventThrottle={16}
-            // onMomentumScrollEnd={ev => {
-            //   console.log(Math.floor(ev.nativeEvent.contentOffset.x / WIDTH));
-            // }}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={renderFlatlistItem}
-            initialNumToRender={1}
-            onViewableItemsChanged={handleViewableItemsChanged.current}
-            viewabilityConfig={viewConfigRef.current}
-            extraData={WIDTH}
-          />
-          {/* BOTTOM SECTION - pagination & next or GetStarted button */}
-          {renderBottomSection()}
-        </View>
-      </SafeAreaView>
+        {/* FLATLIST with pages */}
+        <FlatList
+          ref={flatlistRef}
+          data={dataOnBoaring}
+          contentContainerStyle={{}}
+          pagingEnabled
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          decelerationRate={0}
+          scrollEventThrottle={16}
+          // onMomentumScrollEnd={ev => {
+          //   console.log(Math.floor(ev.nativeEvent.contentOffset.x / WIDTH));
+          // }}
+          keyExtractor={(_, index) => index.toString()}
+          renderItem={renderFlatlistItem}
+          initialNumToRender={1}
+          onViewableItemsChanged={handleViewableItemsChanged.current}
+          viewabilityConfig={viewConfigRef.current}
+          extraData={WIDTH}
+        />
+        {/* BOTTOM SECTION - pagination & next or GetStarted button */}
+        {renderBottomSection()}
+      </View>
+      {/* </SafeAreaView> */}
     </SafeAreaProvider>
   );
 };
@@ -303,12 +318,6 @@ const style = StyleSheet.create({
     fontSize: 14,
     color: ptColors.gray,
   },
-  linearGradient: {
-    position: 'absolute',
-    bottom: 0,
-    width: WIDTH,
-    height: HEIGHT / 3,
-  },
   buttonText: {
     fontSize: 18,
     fontFamily: 'Gill Sans',
@@ -316,6 +325,12 @@ const style = StyleSheet.create({
     margin: 10,
     color: ptColors.white,
     backgroundColor: 'transparent',
+  },
+  linearGradient: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    justifyContent: 'center',
+    opacity: 0.4,
   },
 });
 export default OnboardingScreen;

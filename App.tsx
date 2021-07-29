@@ -9,7 +9,7 @@ interface Props {}
 const App = (props: Props) => {
   return (
     <>
-      <RegisterScreen />
+      <OnboardingScreen />
     </>
   );
 };
