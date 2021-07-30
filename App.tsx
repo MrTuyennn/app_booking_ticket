@@ -1,16 +1,14 @@
 import React from 'react';
-import LoginScreen from 'screens/Auth/LoginScreen';
-import OnboardingScreen from 'screens/OnboardingScreen';
-import SplashScreen from 'screens/SplashScreen';
-import RegisterScreen from 'screens/Auth/RegisterScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import BottomNavigator from 'navigation/BottomNavigator';
 
 interface Props {}
 
 const App = (props: Props) => {
   return (
-    <>
-      <OnboardingScreen />
-    </>
+    <NavigationContainer>
+      <BottomNavigator />
+    </NavigationContainer>
   );
 };
 

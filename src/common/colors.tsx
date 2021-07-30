@@ -39,7 +39,12 @@ export const ptColors = {
   pink: '#eb2f96',
   origin: '#FF5100',
   fbBlue: '#3B5998',
-  appColors: '#333333',
+  appColors: '#3E3E40',
   linearGradient: ['#D40F4D', '#6062A3'],
-  transparent: 'transparent'
+  linearGradientBottom: [
+    'rgba(0, 0, 0, 0.1)',
+    'rgba(0, 0, 0, 0.2)',
+    'rgba(0, 0, 0, 0.1)',
+  ],
+  transparent: 'transparent',
 };

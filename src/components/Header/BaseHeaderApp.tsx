@@ -8,7 +8,7 @@ import BaseHeader, {BaseHeaderProps} from './BaseHeader';
 
 export interface BaseHeaderAppProps extends BaseHeaderProps {
   navigation?: any;
-  styleTitle?: ViewStyle;
+  styleTitle?: any;
   title?: string;
   titleCenter?: boolean;
   onlytitle?: boolean;
@@ -66,6 +66,7 @@ const BaseHeaderApp = (props: BaseHeaderAppProps) => {
               // textTransform: 'uppercase',
               color: ptColors.black,
             },
+            props.styleTitle,
           ]}>
           {props.title}
         </Text>

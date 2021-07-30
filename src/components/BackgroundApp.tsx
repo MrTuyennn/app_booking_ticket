@@ -5,6 +5,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import BaseHeaderApp, {
   BaseHeaderAppProps,
 } from 'components/Header/BaseHeaderApp';
+import { ptColors } from 'common/colors';
 interface Props {
   showBar?: boolean;
   appBar?: BaseHeaderAppProps;
@@ -33,6 +34,7 @@ BackgroundApp.defaultProps = {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: ptColors.appColors
   },
 });
 export default BackgroundApp;

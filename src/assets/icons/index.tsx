@@ -8,3 +8,7 @@ export {default as IconGithub} from './IconGithub';
 export {default as IconGoogle} from './IconGoogle';
 export {default as IconPrevious} from './IconPrevious';
 export {default as IconBack} from './IconBack';
+export {default as IconBooking} from './IconBooking';
+export {default as IconHome} from './IconHome';
+export {default as IconListMovie} from './IconListMovie';
+export {default as IconUser} from './IconUser';
