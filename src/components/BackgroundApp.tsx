@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{memo} from 'react';
 import {ViewStyle, Text, StyleSheet, ScrollView} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 import BaseHeaderApp, {
   BaseHeaderAppProps,
 } from 'components/Header/BaseHeaderApp';
-import { ptColors } from 'common/colors';
+import {ptColors} from 'common/colors';
 interface Props {
   showBar?: boolean;
   appBar?: BaseHeaderAppProps;
@@ -18,10 +18,12 @@ const BackgroundApp = (props: Props) => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.background} forceInset={{top: 'always'}}>
-        {props.showBar && (
-          <BaseHeaderApp {...props.appBar} navigation={props.navigation} />
-        )}
-        <ScrollView style={styles.background}>{props.children}</ScrollView>
+        <ScrollView style={styles.background}>
+          {props.showBar && (
+            <BaseHeaderApp {...props.appBar} navigation={props.navigation} />
+          )}
+          {props.children}
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -34,7 +36,7 @@ BackgroundApp.defaultProps = {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: ptColors.appColors
+    backgroundColor: ptColors.appColors,
   },
 });
-export default BackgroundApp;
+export default memo(BackgroundApp);

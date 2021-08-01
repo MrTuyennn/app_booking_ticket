@@ -1,8 +1,8 @@
-import { IconBack } from 'assets/icons';
-import { ptColors } from 'common/colors';
-import { HEIGHT_SCALE_RATIO, WIDTH, WIDTH_SCALE_RATIO } from 'common/styles';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import {IconBack} from 'assets/icons';
+import {ptColors} from 'common/colors';
+import {HEIGHT_SCALE_RATIO, WIDTH, WIDTH_SCALE_RATIO} from 'common/styles';
+import React, {memo} from 'react';
+import {StyleSheet, TouchableOpacity, View, ViewStyle} from 'react-native';
 
 export interface BaseHeaderProps {
   children?: React.ReactNode;
@@ -39,17 +39,27 @@ const BaseHeader = (props: BaseHeaderProps) => {
   }
   return (
     <View
-      style={[styles.header, {height: 35 * HEIGHT_SCALE_RATIO}] as ViewStyle}>
+      style={
+        [
+          styles.header,
+          {
+            // height: 35 * HEIGHT_SCALE_RATIO
+          },
+        ] as ViewStyle
+      }>
       {props.leftIcon ? (
         <TouchableOpacity
-          onPress={() =>
+          onPress={
             props.onClickLeftIcon
               ? props.onClickLeftIcon
               : props.navigation.goBack()
           }
-          style={{
-            marginHorizontal: 10,
-          }}>
+          style={[
+            props.styleLeftIcon,
+            {
+              marginHorizontal: 10,
+            },
+          ]}>
           {props.leftIcon}
         </TouchableOpacity>
       ) : (
@@ -68,7 +78,7 @@ const BaseHeader = (props: BaseHeaderProps) => {
       <View style={{flex: 1}}>{props.children}</View>
       {props.rightIcon ? (
         <TouchableOpacity
-          onPress={() => props.onClickRightIcon}
+          onPress={props.onClickRightIcon}
           style={{
             marginHorizontal: 10,
           }}>
@@ -121,7 +131,7 @@ const styles = StyleSheet.create({
   header: {
     zIndex: 9999,
     borderTopWidth: 0,
-    height: 56 * HEIGHT_SCALE_RATIO,
+    // height: 56 * HEIGHT_SCALE_RATIO,
     width: WIDTH,
     alignItems: 'center',
     flexDirection: 'row',
@@ -129,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BaseHeader;
+export default memo(BaseHeader);

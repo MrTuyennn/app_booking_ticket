@@ -12,3 +12,5 @@ export {default as IconBooking} from './IconBooking';
 export {default as IconHome} from './IconHome';
 export {default as IconListMovie} from './IconListMovie';
 export {default as IconUser} from './IconUser';
+export {default as IconMenu} from './IconMenu';
+export {default as IconNotif} from './IconNotif';

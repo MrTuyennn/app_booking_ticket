@@ -2,7 +2,7 @@ import {IconBack} from 'assets/icons';
 import {ptColors} from 'common/colors';
 import {FS, ptFonts} from 'common/fonts';
 import {HEIGHT_SCALE_RATIO, WIDTH_SCALE_RATIO} from 'common/styles';
-import React from 'react';
+import React, {memo} from 'react';
 import {Text, View, ViewStyle} from 'react-native';
 import BaseHeader, {BaseHeaderProps} from './BaseHeader';
 
@@ -79,4 +79,4 @@ BaseHeaderApp.defaultProps = {
   titleCenter: true,
 };
 
-export default BaseHeaderApp;
+export default memo(BaseHeaderApp);

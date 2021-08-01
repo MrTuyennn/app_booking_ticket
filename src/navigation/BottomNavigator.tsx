@@ -9,21 +9,10 @@ import BookingScreen from 'screens/MainScreen/BookingScreen';
 import HomeScreen from 'screens/MainScreen/HomeScreen';
 import ListMovieScreen from 'screens/MainScreen/ListMovieScreen';
 import ProfileScreen from 'screens/MainScreen/ProfileScreen';
-// import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import ButtonTab from 'components/ButtonTab';
 interface Props {}
 const Tab = createBottomTabNavigator();
-const Buttontab = ({icon, lableText, isCheck}: any) => {
-  return (
-    <View style={[styles.buttonContainer]}>
-      <View style={styles.iconContainer}>{icon}</View>
-      <View
-        style={[
-          styles.dot,
-          {backgroundColor: isCheck ? ptColors.white : undefined},
-        ]}></View>
-    </View>
-  );
-};
+
 const BottomNavigator = (props: Props) => {
   // const insets = useSafeAreaInsets();
   return (
@@ -33,7 +22,7 @@ const BottomNavigator = (props: Props) => {
         tabBarIcon: ({focused, color}) => {
           if (route.name === CONSTANTS.HomeScreen) {
             return (
-              <Buttontab
+              <ButtonTab
                 isCheck={focused}
                 icon={
                   <IconHome color={focused ? ptColors.white : ptColors.gray} />
@@ -42,7 +31,7 @@ const BottomNavigator = (props: Props) => {
             );
           } else if (route.name === CONSTANTS.BookingScreen) {
             return (
-              <Buttontab
+              <ButtonTab
                 isCheck={focused}
                 icon={
                   <IconBooking
@@ -53,7 +42,7 @@ const BottomNavigator = (props: Props) => {
             );
           } else if (route.name === CONSTANTS.ListMovieScreen) {
             return (
-              <Buttontab
+              <ButtonTab
                 isCheck={focused}
                 icon={
                   <IconListMovie
@@ -64,7 +53,7 @@ const BottomNavigator = (props: Props) => {
             );
           } else if (route.name === CONSTANTS.ProfileScreen) {
             return (
-              <Buttontab
+              <ButtonTab
                 isCheck={focused}
                 icon={
                   <IconUser color={focused ? ptColors.white : ptColors.gray} />
@@ -104,19 +93,6 @@ const BottomNavigator = (props: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  iconContainer: {},
-  dot: {
-    height: 5,
-    width: 5,
-    borderRadius: 10,
-    marginTop: 5 * HEIGHT_SCALE_RATIO,
-  },
-});
+
 
 export default BottomNavigator;
